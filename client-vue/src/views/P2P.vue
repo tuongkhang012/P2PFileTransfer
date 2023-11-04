@@ -262,6 +262,7 @@
         //publish file
         publishFile() {
           console.time("publish")
+          console.time("uploadFile")
             //read file input
             const fileInput = this.$refs.fileInput;
             if (fileInput.files.length > 0) {
@@ -277,14 +278,15 @@
                 }
 
                 //store file to local directory on each client (not server)
-                console.time("uploadFile")
+
                 reader.onload = (event) => {
                     this.localDirectory.push({ name: file.name, publicName: this.toSend.fileName , data: event.target.result });
+                    console.timeEnd("uploadFile")
                 };
 
                 //read file
                 reader.readAsArrayBuffer(file);
-                console.timeEnd("uploadFile")
+
             }
             else {
               window.alert("Please upload a file!")
