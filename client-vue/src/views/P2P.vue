@@ -316,7 +316,11 @@
         },
 
         checkPassword() {
-          this.showButtons = this.password === process.env.VUE_APP_ADMIN_PASSWORD
+          if(this.password !== process.env.VUE_APP_ADMIN_PASSWORD){
+            window.alert("Wrong password!")
+          } else{
+            this.showButtons = true
+          }
         },
 
         discoverHost() {
